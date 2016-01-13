@@ -19,7 +19,7 @@ public class FinancialEngine {
 
 	public OutFinancialFlowBean compute(InFinancialFlowBean inFinancialFlowBean) {
 
-		// init output
+		// Init output
 		OutFinancialFlowBean outFinancialFlowBean = new OutFinancialFlowBean();
 		outFinancialFlowBean.setInFinancialFlowBean(inFinancialFlowBean);
 

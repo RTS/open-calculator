@@ -1,10 +1,11 @@
-package com.rts.extractors;
+package com.rts.extractors.impl;
 
 import com.rts.beans.OutFinancialFlowBean;
 import com.rts.beans.TermBean;
+import com.rts.extractors.Extractor;
 import com.rts.utils.AmountFormatter;
 
-public class ConsoleExtractor {
+public class ConsoleExtractor implements Extractor {
 
 	private static final ConsoleExtractor	CONSOLE_EXTRACTOR		= new ConsoleExtractor();
 
@@ -18,14 +19,15 @@ public class ConsoleExtractor {
 	private ConsoleExtractor() {
 	}
 
-	public void consolePrintHeader() {
-
+	@Override
+	public void printHeader() {
 		System.out.format("+----+--------------------+-----------------+------------------+----------------+-------------+%n");
 		System.out.format("| N° | Financial amount   | Monthly payment | Monthly interest | Principal paid | New balance |%n");
 		System.out.format("+----+--------------------+-----------------+------------------+----------------+-------------+%n");
 	}
 
-	public void consolePrintSchedule(OutFinancialFlowBean outFinancialFlowBean) {
+	@Override
+	public void printSchedule(OutFinancialFlowBean outFinancialFlowBean) {
 
 		if (outFinancialFlowBean != null && !outFinancialFlowBean.getTermBeanList().isEmpty()) {
 			for (TermBean termBean : outFinancialFlowBean.getTermBeanList()) {

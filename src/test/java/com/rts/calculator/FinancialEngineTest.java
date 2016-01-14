@@ -8,7 +8,8 @@ import org.junit.Test;
 
 import com.rts.beans.InFinancialFlowBean;
 import com.rts.beans.OutFinancialFlowBean;
-import com.rts.extractors.ConsoleExtractor;
+import com.rts.extractors.Extractor;
+import com.rts.extractors.factory.ExtractorFactory;
 
 /**
  * @author rts
@@ -36,12 +37,11 @@ public class FinancialEngineTest {
 		inFinancialFlowBean.setFinancialAmount(25000.0);
 		inFinancialFlowBean.setMonthlyDuration(36);
 
-		FinancialEngine financialEngine = FinancialEngine.getInstance();
-		OutFinancialFlowBean outFinancialFlowBean = financialEngine.compute(inFinancialFlowBean);
+		OutFinancialFlowBean outFinancialFlowBean = FinancialEngine.getInstance().compute(inFinancialFlowBean);
 
-		ConsoleExtractor consoleExtractor = ConsoleExtractor.getInstance();
-		consoleExtractor.consolePrintHeader();
-		consoleExtractor.consolePrintSchedule(outFinancialFlowBean);
+		Extractor extractor = ExtractorFactory.getInstance().getExtractor(Extractor.CSV);
+		extractor.printHeader();
+		extractor.printSchedule(outFinancialFlowBean);
 	}
 
 }

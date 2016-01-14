@@ -27,19 +27,6 @@ public class CsvExtractor implements Extractor {
 	private CsvExtractor() {
 	}
 
-	public void printHeader() {
-
-		this.initFileWriter();
-
-		try {
-			fileWriter.append("N°, Financial amount, Monthly payment, Monthly interest, Principal paid, New balance\n");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-		this.finishWriting();
-	}
-
 	public void printSchedule(OutFinancialFlowBean outFinancialFlowBean) {
 
 		this.initFileWriter();

@@ -9,8 +9,6 @@ public interface Extractor {
 	public static final int	XML		= 3;
 	public static final int	JSON	= 4;
 
-	void printHeader();
-
 	void printSchedule(OutFinancialFlowBean outFinancialFlowBean);
 
 }

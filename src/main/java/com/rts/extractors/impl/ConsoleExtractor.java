@@ -19,13 +19,11 @@ public class ConsoleExtractor implements Extractor {
 	private ConsoleExtractor() {
 	}
 
-	public void printHeader() {
+	public void printSchedule(OutFinancialFlowBean outFinancialFlowBean) {
+
 		System.out.format("+----+--------------------+-----------------+------------------+----------------+-------------+%n");
 		System.out.format("| N° | Financial amount   | Monthly payment | Monthly interest | Principal paid | New balance |%n");
 		System.out.format("+----+--------------------+-----------------+------------------+----------------+-------------+%n");
-	}
-
-	public void printSchedule(OutFinancialFlowBean outFinancialFlowBean) {
 
 		if (outFinancialFlowBean != null && !outFinancialFlowBean.getTermBeanList().isEmpty()) {
 			for (TermBean termBean : outFinancialFlowBean.getTermBeanList()) {

@@ -40,7 +40,6 @@ public class FinancialEngineTest {
 		OutFinancialFlowBean outFinancialFlowBean = FinancialEngine.getInstance().compute(inFinancialFlowBean);
 
 		Extractor extractor = ExtractorFactory.getInstance().getExtractor(Extractor.CSV);
-		extractor.printHeader();
 		extractor.printSchedule(outFinancialFlowBean);
 	}
 

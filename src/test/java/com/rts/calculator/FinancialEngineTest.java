@@ -3,44 +3,43 @@
  */
 package com.rts.calculator;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import com.rts.beans.InFinancialFlowBean;
 import com.rts.beans.OutFinancialFlowBean;
+import com.rts.calculator.factory.FinancialEngineFactory;
 import com.rts.extractors.Extractor;
 import com.rts.extractors.factory.ExtractorFactory;
 
-/**
- * @author rts
- *
- */
 public class FinancialEngineTest {
 
-	/**
-	 * @throws java.lang.Exception
-	 */
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	/**
-	 * Test method for
-	 * {@link com.rts.calculator.FinancialEngine#compute(com.rts.beans.InFinancialFlowBean)}
-	 * .
-	 */
-	@Test
-	public final void testCompute() {
+	// @Test
+	public final void testLoanCalculator() {
 		InFinancialFlowBean inFinancialFlowBean = new InFinancialFlowBean();
 
 		inFinancialFlowBean.setMonthlyInterestRate(1.0);
 		inFinancialFlowBean.setFinancialAmount(25000.0);
 		inFinancialFlowBean.setMonthlyDuration(36);
 
-		OutFinancialFlowBean outFinancialFlowBean = FinancialEngine.getInstance().compute(inFinancialFlowBean);
+		OutFinancialFlowBean outFinancialFlowBean = FinancialEngineFactory.getInstance().getFinancialEngine(FinancialEngine.LOAN)
+				.compute(inFinancialFlowBean);
 
-		Extractor extractor = ExtractorFactory.getInstance().getExtractor(Extractor.CSV);
-		extractor.printSchedule(outFinancialFlowBean);
+		// ExtractorFactory.getInstance().getExtractor(Extractor.CSV).printSchedule(outFinancialFlowBean);
+
+		ExtractorFactory.getInstance().getExtractor(Extractor.CONSOLE).printSchedule(outFinancialFlowBean);
+	}
+
+	@Test
+	public final void testInitialFinancialAmountCalculator() {
+		InFinancialFlowBean inFinancialFlowBean = new InFinancialFlowBean();
+
+		inFinancialFlowBean.setMonthlyInterestRate(2.0);
+		inFinancialFlowBean.setFinancialAmount(25000.0);
+		inFinancialFlowBean.setMonthlyDuration(36);
+
+		OutFinancialFlowBean outFinancialFlowBean = FinancialEngineFactory.getInstance()
+				.getFinancialEngine(FinancialEngine.INITIAL_FINANCIAL_AMOUNT).compute(inFinancialFlowBean);
+
 	}
 
 }

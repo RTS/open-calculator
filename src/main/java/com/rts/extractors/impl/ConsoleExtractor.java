@@ -27,12 +27,12 @@ public class ConsoleExtractor implements Extractor {
 
 		if (outFinancialFlowBean != null && !outFinancialFlowBean.getTermBeanList().isEmpty()) {
 			for (TermBean termBean : outFinancialFlowBean.getTermBeanList()) {
-				System.out.format(leftAlignFormat, AmountFormatter.round(termBean.getTermNumber(), defaultDecimalPrecision),
+				System.out.format(leftAlignFormat, AmountFormatter.round(termBean.getPaymentNumber(), defaultDecimalPrecision),
 						AmountFormatter.round(termBean.getFinancialAmount(), defaultDecimalPrecision),
-						AmountFormatter.round(termBean.getMonthlyPayment(), defaultDecimalPrecision),
-						AmountFormatter.round(termBean.getMonthlyInterest(), defaultDecimalPrecision),
+						AmountFormatter.round(termBean.getPaymentAmount(), defaultDecimalPrecision),
+						AmountFormatter.round(termBean.getInterestPaid(), defaultDecimalPrecision),
 						AmountFormatter.round(termBean.getPrincipalPaid(), defaultDecimalPrecision),
-						AmountFormatter.round(termBean.getNewbalance(), defaultDecimalPrecision));
+						AmountFormatter.round(termBean.getRemainingBalance(), defaultDecimalPrecision));
 			}
 		}
 		System.out.format("+----+--------------------+-----------------+------------------+----------------+-------------+%n");

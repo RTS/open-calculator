@@ -36,21 +36,22 @@ public class CsvExtractor implements Extractor {
 
 			if (outFinancialFlowBean != null && !outFinancialFlowBean.getTermBeanList().isEmpty()) {
 				for (TermBean termBean : outFinancialFlowBean.getTermBeanList()) {
-					fileWriter.append(String.valueOf(AmountFormatter.round(termBean.getTermNumber(), defaultDecimalPrecision)));
+					fileWriter
+							.append(String.valueOf(AmountFormatter.round(termBean.getPaymentNumber(), defaultDecimalPrecision)));
 					fileWriter.append(", ");
 					fileWriter.append(
 							String.valueOf(AmountFormatter.round(termBean.getFinancialAmount(), defaultDecimalPrecision)));
 					fileWriter.append(", ");
 					fileWriter
-							.append(String.valueOf(AmountFormatter.round(termBean.getMonthlyPayment(), defaultDecimalPrecision)));
+							.append(String.valueOf(AmountFormatter.round(termBean.getPaymentAmount(), defaultDecimalPrecision)));
 					fileWriter.append(", ");
-					fileWriter.append(
-							String.valueOf(AmountFormatter.round(termBean.getMonthlyInterest(), defaultDecimalPrecision)));
+					fileWriter.append(String.valueOf(AmountFormatter.round(termBean.getInterestPaid(), defaultDecimalPrecision)));
 					fileWriter.append(", ");
 					fileWriter
 							.append(String.valueOf(AmountFormatter.round(termBean.getPrincipalPaid(), defaultDecimalPrecision)));
 					fileWriter.append(", ");
-					fileWriter.append(String.valueOf(AmountFormatter.round(termBean.getNewbalance(), defaultDecimalPrecision)));
+					fileWriter.append(
+							String.valueOf(AmountFormatter.round(termBean.getRemainingBalance(), defaultDecimalPrecision)));
 					fileWriter.append("\n");
 				}
 			}

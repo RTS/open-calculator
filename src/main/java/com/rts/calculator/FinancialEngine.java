@@ -6,61 +6,18 @@ import com.rts.beans.InFinancialFlowBean;
 import com.rts.beans.OutFinancialFlowBean;
 import com.rts.beans.TermBean;
 
-public class FinancialEngine {
+public abstract class FinancialEngine {
 
-	private static final FinancialEngine FINANCIAL_ENGINE = new FinancialEngine();
+	public static final int	LOAN						= 1;
+	public static final int	INITIAL_FINANCIAL_AMOUNT	= 2;
 
-	public static FinancialEngine getInstance() {
-		return FINANCIAL_ENGINE;
-	}
-
-	private FinancialEngine() {
-	}
-
-	public OutFinancialFlowBean compute(InFinancialFlowBean inFinancialFlowBean) {
-
-		// Init output
-		OutFinancialFlowBean outFinancialFlowBean = new OutFinancialFlowBean();
-		outFinancialFlowBean.setInFinancialFlowBean(inFinancialFlowBean);
-
-		double financialAmount = this.getFinancialAmount(inFinancialFlowBean);
-		double monthlyInterestRate = this.getMonthlyInterestRate(inFinancialFlowBean);
-		int monthlyDuration = this.getMonthlyDuration(inFinancialFlowBean);
-
-		double monthlyPayment = .0, monthlyInterest = .0, principalPaid = .0;
-
-		// calculation function
-		monthlyPayment = financialAmount * monthlyInterestRate
-				* Math.pow(1 + monthlyInterestRate, (double) monthlyDuration)
-				/ (Math.pow(1 + monthlyInterestRate, (double) monthlyDuration) - 1);
-
-		int termNumber;
-		for (termNumber = 1; termNumber < monthlyDuration; termNumber++) {
-			monthlyInterest = financialAmount * monthlyInterestRate;
-			principalPaid = monthlyPayment - monthlyInterest;
-
-			TermBean termBean = this.initTerm(financialAmount, monthlyPayment, monthlyInterest, principalPaid,
-					termNumber);
-
-			this.addNewTerm(outFinancialFlowBean, termBean);
-
-			financialAmount -= principalPaid;
-		}
-
-		// last month
-		TermBean termBean = this.initTerm(financialAmount, financialAmount + monthlyInterest,
-				financialAmount * monthlyInterestRate, financialAmount, termNumber);
-
-		this.addNewTerm(outFinancialFlowBean, termBean);
-
-		return outFinancialFlowBean;
-	}
+	public abstract OutFinancialFlowBean compute(InFinancialFlowBean inFinancialFlowBean);
 
 	/**
 	 * @param outFinancialFlowBean
 	 * @param termBean
 	 */
-	private void addNewTerm(OutFinancialFlowBean outFinancialFlowBean, TermBean termBean) {
+	protected void addNewTerm(OutFinancialFlowBean outFinancialFlowBean, TermBean termBean) {
 		if (outFinancialFlowBean.getTermBeanList() == null) {
 			outFinancialFlowBean.setTermBeanList(new ArrayList<TermBean>());
 		}
@@ -68,26 +25,30 @@ public class FinancialEngine {
 	}
 
 	/**
+	 * 
+	 * @param paymentNumber
 	 * @param financialAmount
-	 * @param monthlyPayment
-	 * @param monthlyInterest
+	 * @param paymentAmount
+	 * @param interestPaid
 	 * @param principalPaid
-	 * @param termNumber
+	 * @param remainingBalance
 	 * @return
 	 */
-	private TermBean initTerm(double financialAmount, double monthlyPayment, double monthlyInterest,
-			double principalPaid, int termNumber) {
+	protected TermBean initTerm(int paymentNumber, double financialAmount, double paymentAmount, double interestPaid,
+			double principalPaid, double remainingBalance) {
 		TermBean termBean = new TermBean();
-		termBean.setTermNumber(termNumber);
+
+		termBean.setPaymentNumber(paymentNumber);
 		termBean.setFinancialAmount(financialAmount);
-		termBean.setMonthlyPayment(monthlyPayment);
-		termBean.setMonthlyInterest(monthlyInterest);
+		termBean.setPaymentAmount(paymentAmount);
+		termBean.setInterestPaid(interestPaid);
 		termBean.setPrincipalPaid(principalPaid);
-		termBean.setNewbalance(financialAmount - principalPaid);
+		termBean.setRemainingBalance(remainingBalance);
+
 		return termBean;
 	}
 
-	private int getMonthlyDuration(InFinancialFlowBean inFinancialFlowBean) {
+	protected int getMonthlyDuration(InFinancialFlowBean inFinancialFlowBean) {
 		int monthlyDuration = 0;
 		if (inFinancialFlowBean.getYearlyDuration() != null) {
 			monthlyDuration = inFinancialFlowBean.getYearlyDuration() * 12;
@@ -97,7 +58,7 @@ public class FinancialEngine {
 		return monthlyDuration;
 	}
 
-	private double getMonthlyInterestRate(InFinancialFlowBean inFinancialFlowBean) {
+	protected double getMonthlyInterestRate(InFinancialFlowBean inFinancialFlowBean) {
 		double monthlyInterestRate = .0;
 		if (inFinancialFlowBean.getYearlyInterestRate() != null) {
 			monthlyInterestRate = (inFinancialFlowBean.getYearlyInterestRate() / 12) / 100;
@@ -107,12 +68,11 @@ public class FinancialEngine {
 		return monthlyInterestRate;
 	}
 
-	private double getFinancialAmount(InFinancialFlowBean inFinancialFlowBean) {
+	protected double getFinancialAmount(InFinancialFlowBean inFinancialFlowBean) {
 		double financialAmount = .0;
 		if (inFinancialFlowBean.getFinancialAmount() != null) {
 			financialAmount = inFinancialFlowBean.getFinancialAmount();
 		}
 		return financialAmount;
 	}
-
 }

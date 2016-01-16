@@ -1,72 +1,75 @@
 package com.rts.beans;
 
+import java.util.Date;
+
 public class TermBean {
 
-	private Integer	termNumber;
-	private Double	financialAmount;
-	private Double	monthlyPayment;
-	private Double	monthlyInterest;
+	private int		paymentNumber;
+	private Date	paymentDate;
+	private Double	paymentAmount;
+	private Double	interestPaid;
 	private Double	principalPaid;
-	private Double	newbalance;
+	private Double	financialAmount;
+	private Double	remainingBalance;
 
 	/**
-	 * @return the termNumber
+	 * @return the paymentNumber
 	 */
-	public Integer getTermNumber() {
-		return termNumber;
+	public int getPaymentNumber() {
+		return paymentNumber;
 	}
 
 	/**
-	 * @param termNumber
-	 *            the termNumber to set
+	 * @param paymentNumber
+	 *            the paymentNumber to set
 	 */
-	public void setTermNumber(Integer termNumber) {
-		this.termNumber = termNumber;
+	public void setPaymentNumber(int paymentNumber) {
+		this.paymentNumber = paymentNumber;
 	}
 
 	/**
-	 * @return the financialAmount
+	 * @return the paymentDate
 	 */
-	public Double getFinancialAmount() {
-		return financialAmount;
+	public Date getPaymentDate() {
+		return paymentDate;
 	}
 
 	/**
-	 * @param financialAmount
-	 *            the financialAmount to set
+	 * @param paymentDate
+	 *            the paymentDate to set
 	 */
-	public void setFinancialAmount(Double financialAmount) {
-		this.financialAmount = financialAmount;
+	public void setPaymentDate(Date paymentDate) {
+		this.paymentDate = paymentDate;
 	}
 
 	/**
-	 * @return the monthlyPayment
+	 * @return the paymentAmount
 	 */
-	public Double getMonthlyPayment() {
-		return monthlyPayment;
+	public Double getPaymentAmount() {
+		return paymentAmount;
 	}
 
 	/**
-	 * @param monthlyPayment
-	 *            the monthlyPayment to set
+	 * @param paymentAmount
+	 *            the paymentAmount to set
 	 */
-	public void setMonthlyPayment(Double monthlyPayment) {
-		this.monthlyPayment = monthlyPayment;
+	public void setPaymentAmount(Double paymentAmount) {
+		this.paymentAmount = paymentAmount;
 	}
 
 	/**
-	 * @return the monthlyInterest
+	 * @return the interestPaid
 	 */
-	public Double getMonthlyInterest() {
-		return monthlyInterest;
+	public Double getInterestPaid() {
+		return interestPaid;
 	}
 
 	/**
-	 * @param monthlyInterest
-	 *            the monthlyInterest to set
+	 * @param interestPaid
+	 *            the interestPaid to set
 	 */
-	public void setMonthlyInterest(Double monthlyInterest) {
-		this.monthlyInterest = monthlyInterest;
+	public void setInterestPaid(Double interestPaid) {
+		this.interestPaid = interestPaid;
 	}
 
 	/**
@@ -85,29 +88,33 @@ public class TermBean {
 	}
 
 	/**
-	 * @return the newbalance
+	 * @return the financialAmount
 	 */
-	public Double getNewbalance() {
-		return newbalance;
+	public Double getFinancialAmount() {
+		return financialAmount;
 	}
 
 	/**
-	 * @param newbalance
-	 *            the newbalance to set
+	 * @param financialAmount
+	 *            the financialAmount to set
 	 */
-	public void setNewbalance(Double newbalance) {
-		this.newbalance = newbalance;
+	public void setFinancialAmount(Double financialAmount) {
+		this.financialAmount = financialAmount;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see java.lang.Object#toString()
+	/**
+	 * @return the remainingBalance
 	 */
-	@Override
-	public String toString() {
-		return "TermBean [termNumber=" + termNumber + ", financialAmount=" + financialAmount + ", monthlyPayment="
-				+ monthlyPayment + ", monthlyInterest=" + monthlyInterest + ", principalPaid=" + principalPaid
-				+ ", newbalance=" + newbalance + "]";
+	public Double getRemainingBalance() {
+		return remainingBalance;
+	}
+
+	/**
+	 * @param remainingBalance
+	 *            the remainingBalance to set
+	 */
+	public void setRemainingBalance(Double remainingBalance) {
+		this.remainingBalance = remainingBalance;
 	}
 
 }

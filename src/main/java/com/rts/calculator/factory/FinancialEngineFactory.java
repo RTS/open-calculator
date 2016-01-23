@@ -1,8 +1,8 @@
 package com.rts.calculator.factory;
 
 import com.rts.calculator.FinancialEngine;
-import com.rts.calculator.impl.InitialFinancialAmountCalculator;
-import com.rts.calculator.impl.LoanCalculator;
+import com.rts.calculator.impl.LoanCalculatorV1;
+import com.rts.calculator.impl.LoanCalculatorV2;
 
 public class FinancialEngineFactory {
 
@@ -19,9 +19,9 @@ public class FinancialEngineFactory {
 
 		switch (calculationMethod) {
 			case 1:
-				return LoanCalculator.getInstance();
+				return LoanCalculatorV1.getInstance();
 			case 2:
-				return InitialFinancialAmountCalculator.getInstance();
+				return LoanCalculatorV2.getInstance();
 			default:
 				return null;
 		}

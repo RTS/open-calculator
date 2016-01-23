@@ -4,15 +4,15 @@ import com.rts.beans.InFinancialFlowBean;
 import com.rts.beans.OutFinancialFlowBean;
 import com.rts.calculator.FinancialEngine;
 
-public class InitialFinancialAmountCalculator extends FinancialEngine {
+public class LoanCalculatorV2 extends FinancialEngine {
 
-	private static final InitialFinancialAmountCalculator INITIAL_FINANCIAL_AMOUT_CALCULATOR = new InitialFinancialAmountCalculator();
+	private static final LoanCalculatorV2 LOAN_CALCULATOR_V2 = new LoanCalculatorV2();
 
-	public static InitialFinancialAmountCalculator getInstance() {
-		return INITIAL_FINANCIAL_AMOUT_CALCULATOR;
+	public static LoanCalculatorV2 getInstance() {
+		return LOAN_CALCULATOR_V2;
 	}
 
-	private InitialFinancialAmountCalculator() {
+	private LoanCalculatorV2() {
 	}
 
 	public OutFinancialFlowBean compute(InFinancialFlowBean inFinancialFlowBean) {

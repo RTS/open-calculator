@@ -13,32 +13,33 @@ import com.rts.extractors.factory.ExtractorFactory;
 
 public class FinancialEngineTest {
 
-	// @Test
-	public final void testLoanCalculator() {
+	@Test
+	public final void testLoanCalculatorV1() {
 		InFinancialFlowBean inFinancialFlowBean = new InFinancialFlowBean();
 
 		inFinancialFlowBean.setMonthlyInterestRate(1.0);
 		inFinancialFlowBean.setFinancialAmount(25000.0);
 		inFinancialFlowBean.setMonthlyDuration(36);
 
-		OutFinancialFlowBean outFinancialFlowBean = FinancialEngineFactory.getInstance().getFinancialEngine(FinancialEngine.LOAN)
-				.compute(inFinancialFlowBean);
+		OutFinancialFlowBean outFinancialFlowBean = FinancialEngineFactory.getInstance()
+				.getFinancialEngine(FinancialEngine.LOAN_V1).compute(inFinancialFlowBean);
 
 		// ExtractorFactory.getInstance().getExtractor(Extractor.CSV).printSchedule(outFinancialFlowBean);
 
 		ExtractorFactory.getInstance().getExtractor(Extractor.CONSOLE).printSchedule(outFinancialFlowBean);
 	}
 
-	@Test
-	public final void testInitialFinancialAmountCalculator() {
+	public final void testLoanCalculatorV2() {
 		InFinancialFlowBean inFinancialFlowBean = new InFinancialFlowBean();
 
-		inFinancialFlowBean.setMonthlyInterestRate(2.0);
+		inFinancialFlowBean.setMonthlyInterestRate(1.0);
 		inFinancialFlowBean.setFinancialAmount(25000.0);
 		inFinancialFlowBean.setMonthlyDuration(36);
 
 		OutFinancialFlowBean outFinancialFlowBean = FinancialEngineFactory.getInstance()
-				.getFinancialEngine(FinancialEngine.INITIAL_FINANCIAL_AMOUNT).compute(inFinancialFlowBean);
+				.getFinancialEngine(FinancialEngine.LOAN_V2).compute(inFinancialFlowBean);
+
+		ExtractorFactory.getInstance().getExtractor(Extractor.CONSOLE).printSchedule(outFinancialFlowBean);
 
 	}
 

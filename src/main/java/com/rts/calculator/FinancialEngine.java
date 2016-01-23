@@ -8,8 +8,8 @@ import com.rts.beans.TermBean;
 
 public abstract class FinancialEngine {
 
-	public static final int	LOAN						= 1;
-	public static final int	INITIAL_FINANCIAL_AMOUNT	= 2;
+	public static final int	LOAN_V1	= 1;
+	public static final int	LOAN_V2	= 2;
 
 	public abstract OutFinancialFlowBean compute(InFinancialFlowBean inFinancialFlowBean);
 

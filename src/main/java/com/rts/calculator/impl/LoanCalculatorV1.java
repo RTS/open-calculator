@@ -5,15 +5,15 @@ import com.rts.beans.OutFinancialFlowBean;
 import com.rts.beans.TermBean;
 import com.rts.calculator.FinancialEngine;
 
-public class LoanCalculator extends FinancialEngine {
+public class LoanCalculatorV1 extends FinancialEngine {
 
-	private static final LoanCalculator LOAN_CALCULATOR = new LoanCalculator();
+	private static final LoanCalculatorV1 LOAN_CALCULATOR_V1 = new LoanCalculatorV1();
 
-	public static LoanCalculator getInstance() {
-		return LOAN_CALCULATOR;
+	public static LoanCalculatorV1 getInstance() {
+		return LOAN_CALCULATOR_V1;
 	}
 
-	private LoanCalculator() {
+	private LoanCalculatorV1() {
 	}
 
 	public OutFinancialFlowBean compute(InFinancialFlowBean inFinancialFlowBean) {

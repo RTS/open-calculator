@@ -145,7 +145,6 @@ public class Test {
 		DR_NEW_PRINCIPAL = FloatArray(monthlyDuration);
 		DR_NEW_INTEREST = FloatArray(monthlyDuration);
 		DR_LOAN_PAYMENT = FloatArray(monthlyDuration);
-		DR_GRAPH_BALANCE = FloatArray(monthlyDuration);
 
 		double interest = 0;
 		double principal = 0;

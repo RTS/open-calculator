@@ -9,7 +9,7 @@ public class ConsoleExtractor implements Extractor {
 
 	private static final ConsoleExtractor	CONSOLE_EXTRACTOR		= new ConsoleExtractor();
 
-	private int								defaultDecimalPrecision	= 2;
+	private int								defaultDecimalPrecision	= 4;
 	private String							leftAlignFormat			= "| %-2.0f | %-18.2f | %-15.2f | %-16.2f | %-14.2f | %-11.2f |%n";
 
 	public static ConsoleExtractor getInstance() {
@@ -29,7 +29,7 @@ public class ConsoleExtractor implements Extractor {
 			for (TermBean termBean : outFinancialFlowBean.getTermBeanList()) {
 				System.out.format(leftAlignFormat, AmountFormatter.round(termBean.getPaymentNumber(), defaultDecimalPrecision),
 						AmountFormatter.round(termBean.getFinancialAmount(), defaultDecimalPrecision),
-						AmountFormatter.round(termBean.getPaymentAmount(), defaultDecimalPrecision),
+						termBean.getPaymentAmount(),//AmountFormatter.round(termBean.getPaymentAmount(), defaultDecimalPrecision),
 						AmountFormatter.round(termBean.getInterestPaid(), defaultDecimalPrecision),
 						AmountFormatter.round(termBean.getPrincipalPaid(), defaultDecimalPrecision),
 						AmountFormatter.round(termBean.getRemainingBalance(), defaultDecimalPrecision));

@@ -25,6 +25,7 @@ public class CalculatorUtils {
 		return (monthlyPaymentAmount / Math.pow((1 + monthlyInterestRate), monthlyDuration));
 	}
 
+	// ln(1+interestRate)-ln(1-((financialAmount*interestRate)/monthlyPayment))
 	public static int duration(double monthlyInterestRate, double monthlyPaymentAmount, double financialAmount) {
 
 		if (monthlyInterestRate == 0 && monthlyPaymentAmount != 0) {

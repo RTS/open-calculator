@@ -29,6 +29,7 @@ public class FinancialEngineTest {
 		ExtractorFactory.getInstance().getExtractor(Extractor.CONSOLE).printSchedule(outFinancialFlowBean);
 	}
 
+	@Test
 	public final void testLoanCalculatorV2() {
 		InFinancialFlowBean inFinancialFlowBean = new InFinancialFlowBean();
 

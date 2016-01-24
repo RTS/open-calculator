@@ -7,9 +7,9 @@ import org.junit.Test;
 
 import com.rts.beans.InFinancialFlowBean;
 import com.rts.beans.OutFinancialFlowBean;
-import com.rts.calculator.factory.FinancialEngineFactory;
 import com.rts.extractors.Extractor;
-import com.rts.extractors.factory.ExtractorFactory;
+import com.rts.factory.ExtractorFactory;
+import com.rts.factory.FinancialEngineFactory;
 
 public class FinancialEngineTest {
 

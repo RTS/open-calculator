@@ -1,4 +1,4 @@
-package com.rts.extractors.factory;
+package com.rts.factory;
 
 import com.rts.extractors.Extractor;
 import com.rts.extractors.impl.ConsoleExtractor;

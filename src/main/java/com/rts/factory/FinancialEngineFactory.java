@@ -1,4 +1,4 @@
-package com.rts.calculator.factory;
+package com.rts.factory;
 
 import com.rts.calculator.FinancialEngine;
 import com.rts.calculator.impl.LoanCalculatorV1;
